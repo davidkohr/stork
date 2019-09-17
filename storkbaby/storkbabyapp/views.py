@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
+from django.template import loader
 
 # Create your views here.
 from django.http import HttpResponse
@@ -12,5 +13,9 @@ def index(request):
 
 # This is a user's profile page!
 def results(request, profile_id):
-    response = "You're looking at the profile for user %s."
-    return HttpResponse(response % profile_id)
+    #response = "You're looking at the profile for user %s."
+    #return HttpResponse(response % profile_id)
+    context = {
+        'profile_id': profile_id,
+    }
+    return render(request, 'storkbabyapp/index.html', context)
