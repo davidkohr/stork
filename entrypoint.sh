@@ -14,6 +14,15 @@
 #python manage.py crontab show
 # ################################
 
+set -o xtrace
+set -e
+set -o pipefail
+
+if [ -d "$SRC_DIR"  ]; then
+    echo "$SRC_DIR"
+    cd $SRC_DIR
+fi
+
 # Apply database migrations
 echo "Apply database migrations"
 python manage.py migrate
