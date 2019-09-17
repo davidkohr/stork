@@ -15,6 +15,9 @@ def index(request):
 def results(request, profile_id):
     #response = "You're looking at the profile for user %s."
     #return HttpResponse(response % profile_id)
+
+    #This is where we would do some DB queries to get profile info
+
     context = {
         'profile_id': profile_id,
     }
