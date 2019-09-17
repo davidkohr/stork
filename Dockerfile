@@ -13,5 +13,4 @@ RUN pip install -r /code/requirements.txt
 RUN pip install https://bitbucket.org/dbenamy/devcron/get/tip.tar.gz
 
 ENV SRC_DIR=/src \
-    DEST_DIR=/opt/stork/ 
-
+    DEST_DIR=/opt/stork/
