@@ -29,4 +29,4 @@ python /code/storkbaby/manage.py migrate
 
 # Start server
 echo "Starting server"
-python /code/storkbaby/manage.py runserver 0.0.0.0:8000
+python /code/storkbaby/manage.py runserver 0.0.0.0:8080
