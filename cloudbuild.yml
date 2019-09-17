@@ -3,9 +3,9 @@ steps:
   args: ['build', '-t', 'gcr.io/stork-253213/stork', '.']
 #  env: [string, string, ...]
 #  dir: "stork/"
-  id: string
+#  id: string
 #  waitFor: string
-  entrypoint: string
+#  entrypoint: string
 #  secretEnv: string
 #  volumes: object(Volume)
 #  timeout: string (Duration format)
