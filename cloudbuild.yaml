@@ -1,0 +1,9 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/stork-253213/stork', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/stork-253213/stork']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'stork', '--image', 'gcr.io/stork-253213/stork', '--region', 'us-east1','--platform', 'managed', '--quiet']
+images:
+- gcr.io/stork-253213/stork
