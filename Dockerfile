@@ -3,16 +3,15 @@ ENV PYTHONUNBUFFERED 1
 ENTRYPOINT ["entrypoint.sh"]
 
 # App setup
-ADD . /code
+COPY ./ /code
 WORKDIR /code
+COPY entrypoint.sh /bin/entrypoint.sh
+RUN chmod +x /bin/entrypoint.sh
 
 # Requirements installation
-RUN pip install -r requirements.txt
+RUN pip install -r /code/requirements.txt
 RUN pip install https://bitbucket.org/dbenamy/devcron/get/tip.tar.gz
-#COPY ./entrypoint.sh /
-
 
 ENV SRC_DIR=/src \
     DEST_DIR=/opt/stork/ 
 
-COPY ./ /code
