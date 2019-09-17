@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  stork:
+    container_name: "stork"
+    build: .
+    command: ./entrypoint.sh
+    volumes:
+      - .:/code
+      - .db_data/db.sqlite3:/db.sqlite3
+    ports:
+      - "8000:8000"
+    restart: "unless-stopped"
