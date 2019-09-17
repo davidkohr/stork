@@ -9,7 +9,7 @@ from django.http import HttpResponse
 
 # This is the landing page for the app!
 def index(request):
-    return HttpResponse("Hello, world. You're at the storkbaby index.")
+    return render(request,'storkbabyapp/home.html')
 
 # This is a user's profile page!
 def results(request, profile_id):
