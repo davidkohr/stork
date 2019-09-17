@@ -1,40 +1,100 @@
 {% extends 'storkbabyapp/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 {% block content %}
 <div class="container"> 
         <!-- profile information -->
         <div class="row">
             <!-- personal information -->
-            <div class="col-md">
+            <div class="col-md" style="margin-top:20px">
                 <div class="row">
+                    <div class="col-md-2">
+                        <img style="vertical-align:bottom" width="150" height="150" src="{% static 'profileM.png' %}">
+                    <br><br>
+                    </div>
                     <div class="col-md-3">
-                        <img style="vertical-align:bottom" src="https://placehold.it/120x120">
+                        <h5>{{firstname}} {{lastname}}
+                        </h5>
+                        {% for i in '01234'|make_list %}
+                        {% if rating >= forloop.counter %}
+                            <span>★</span>
+                        {% else %}
+                            <span>☆</span>
+                        {% endif %}
+                        {% endfor %}
                     </div>
                     <div class="col-md-6">
-                        <h5>{{firstname}} {{lastname}}</h5>
-                        <h6>Contact:</h6>
-                        <ul>
-                            <li>{{email}}</li>
-                            <li>{{phone}}</li>
-                        </ul>
-                        
+                        <br> 
                     </div>
                 </div>
             </div>
-            <!-- preference information -->
-            <div class="col-md-6">
-                <h6>Preferences:</h6>
+        </div>
+        <br>
+        <!-- other information -->
+        <div class="row">
+            <!-- contact information -->
+            <div class="col-md-4">  
+                <h6>Contact:</h6>
                 <ul>
-                    {% for item in preferences %}
-                    <li>{{item}}</li>
-                    {% endfor %}
-                </ul>
+                    <li>{{email}}</li>
+                    <li>{{phone}}</li>
+                </ul>    
+            </div>
+            <!-- kid/qualification information -->
+            <div class="col-md-4">  
+                    {%if parent%}
+                    <h6>Kids:</h6>
+                    <ul>
+                        {% for kid in kids %}
+                        <li>{{kid.0}} {{kid.1}} (age: {{kid.2}}) </li>   
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <h6>Qualifications:</h6>
+                    <ul>
+                        <li>Education: {{education}}</li>
+                        <li>Experience: {{experience}}</li>
+                    </ul>
+                    {%endif%}
+            </div>
+            <!-- preference information -->
+            <div class="col-md-4">  
+                    {%if parent%}
+                    <h6>Preferences:</h6>
+                    {% else %}
+                    <h6>Supports:</h6>
+                    {%endif%}
+                    <ul>
+                        {% for item in preferences %}
+                        <li>{{item}}</li>
+                        {% endfor %}
+                    </ul>
             </div>
         </div>
         <!-- this is where connections will go -->
+        <br>
         <div class="row">
-
+            <div class="col-sm">
+                <br>
+                <h6>People you both know:</h6>
+            </div>
+        </div>
+        <div class="row ">
+            {% for item in connections %}
+            <div class="col-md">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img style="vertical-align:bottom" width="50" height="50" src="{% static 'profileM.png' %}">
+                    </div>
+                    <div class="col-md-6">
+                            <a href="../../{{item.2}}/profile">{{item.0}} {{item.1}}</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
       </div>
+      
 
 {% endblock %}

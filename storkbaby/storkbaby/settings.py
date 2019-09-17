@@ -25,7 +25,7 @@ SECRET_KEY = '@%s+&3y0_!umn%s3@4)+b#m2k6igkgme*gtv70*u6ujeoc3^*!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.33.10','stork-6xt3jixdeq-ue.a.run.app']
+ALLOWED_HOSTS = ['192.168.33.10','stork-6xt3jixdeq-ue.a.run.app', '127.0.0.1']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storkbabyapp',
+    'storkbaby',
 ]
 
 MIDDLEWARE = [
