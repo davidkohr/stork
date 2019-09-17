@@ -1,11 +1,40 @@
 {% extends 'storkbabyapp/base.html' %}
 
 {% block content %}
+<div class="container"> 
+        <!-- profile information -->
+        <div class="row">
+            <!-- personal information -->
+            <div class="col-md">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img style="vertical-align:bottom" src="https://placehold.it/120x120">
+                    </div>
+                    <div class="col-md-6">
+                        <h5>{{firstname}} {{lastname}}</h5>
+                        <h6>Contact:</h6>
+                        <ul>
+                            <li>{{email}}</li>
+                            <li>{{phone}}</li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- preference information -->
+            <div class="col-md-6">
+                <h6>Preferences:</h6>
+                <ul>
+                    {% for item in preferences %}
+                    <li>{{item}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <!-- this is where connections will go -->
+        <div class="row">
 
-{% if profile_id %}
-    <p>You are looking at {{ profile_id }}!</p>
-{% else %}
-    <p>Nope right on out of here!</p>
-{% endif %}
+        </div>
+      </div>
 
 {% endblock %}
