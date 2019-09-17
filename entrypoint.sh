@@ -26,6 +26,7 @@ fi
 # Apply database migrations
 echo "Apply database migrations"
 python /code/storkbaby/manage.py migrate
+python /code/storkbaby/manage.py makemigrations storkbaby
 
 # Start server
 echo "Starting server"
