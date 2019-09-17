@@ -22,7 +22,7 @@ def results(request, profile_id):
     email = "jane.doe@indexexchange.com"
     phone = "(416) 555-5555"
     # This will be populated for everyone
-    connections = [["Friend", "Best", 1], ["Sister", "Oldest", 2]]
+    connections = [["Friend", "Best", 1], ["Sister", "Oldest", 2], ["Friend", "Other", 3], ["Co", "Worker", 4]]
     # This will be populated but mean something different for sitters/parents
     preferences = ["vegetarian","ADHD support"]
     # Sitter only

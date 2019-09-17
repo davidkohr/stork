@@ -17,7 +17,6 @@
                             <li>{{email}}</li>
                             <li>{{phone}}</li>
                         </ul>
-                        
                     </div>
                 </div>
             </div>
@@ -33,7 +32,16 @@
         </div>
         <!-- this is where connections will go -->
         <div class="row">
-
+            <div class="col-sm">
+                People you both know:
+            </div>
+        </div>
+        <div class="row">
+            {% for item in connections %}
+            <div class="col-md">
+                    {{item}}
+            </div>
+            {% endfor %}
         </div>
       </div>
 
