@@ -6,6 +6,9 @@ from django.template import loader
 
 # Create your views here.
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+
+from .forms import NameForm
 
 # This is the landing page for the app!
 def index(request):

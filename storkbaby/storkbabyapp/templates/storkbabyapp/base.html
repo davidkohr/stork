@@ -28,14 +28,13 @@
           <li class="nav-item active">
             <a class="nav-link" href="/storkbaby">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="/storkbaby/123/profile">Test Profile</a>
-          </li>
         </ul>
       </div>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0 bg-white" type="submit">Search</button>
+      <form class="form-inline my-2 my-lg-0" type="get" action="/storkbaby/" method="POST" style="margin: 0">
+        {% csrf_token %}
+        {{ form }}
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="your_name" name="your_name" value="{{ current_name }}">
+        <button class="btn btn-outline-success my-2 my-sm-0 bg-white" id="search_submit" type="submit">Search</button>
       </form>
     </nav>
     {% block content %}
