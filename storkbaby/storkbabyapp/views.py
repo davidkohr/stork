@@ -18,7 +18,7 @@ def index(request):
 # This is a user's profile page!
 def results(request, profile_id):
     # This is where we would do some DB queries to get profile info
-    users.objects.all()
+    user.objects.all()
     # Declaring some very basic variables to test with. 
     parent = True
     firstname = "Jane"
