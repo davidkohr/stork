@@ -13,17 +13,37 @@ def index(request):
 
 # This is a user's profile page!
 def results(request, profile_id):
-    #response = "You're looking at the profile for user %s."
-    #return HttpResponse(response % profile_id)
-
     # This is where we would do some DB queries to get profile info
 
     # Declaring some very basic variables to test with. 
-    name = "Test User"
+    parent = True
+    firstname = "Jane"
+    lastname = "Doe"
+    email = "jane.doe@indexexchange.com"
+    phone = "(416) 555-5555"
+    # This will be populated for everyone
+    connections = [["Friend", "Best", 1], ["Sister", "Oldest", 2]]
+    # This will be populated but mean something different for sitters/parents
+    preferences = ["vegetarian","ADHD support"]
+    # Sitter only
+    education = ""
+    experience = ""
+    # Parent only
+    kids = [["Bobby", "Doe", 11],["Alice", "Doe", 8]]
 
+    # Set up context (determine how to populate as part of template)
     context = {
         'profile_id': profile_id,
-        'name': name,
+        'parent': parent,
+        'firstname' : firstname,
+        'lastname' : lastname,
+        'email': email,
+        'phone': phone,
+        'connections': connections,
+        'preferences': preferences,
+        'education': education,
+        'experience': experience,
+        'kids': kids,
     }
 
     return render(request, 'storkbabyapp/profile.html', context)
