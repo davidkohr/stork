@@ -1,0 +1,23 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/stork-253213/stork', '.']
+#  env: [string, string, ...]
+#  dir: "stork/"
+#  id: string
+#  waitFor: string
+#  entrypoint: string
+#  secretEnv: string
+#  volumes: object(Volume)
+#  timeout: string (Duration format)
+#- name: string
+#  ...
+#- name: string
+#  ...
+#timeout: string (Duration format)
+#logsBucket: string
+#options:
+# env = [string, string, ...]
+# machineType: enum(MachineType)
+#tags: [string, string, ...]
+#images:
+#- [string, string, ...]

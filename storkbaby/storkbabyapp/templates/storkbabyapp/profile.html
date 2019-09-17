@@ -1,0 +1,11 @@
+{% extends 'storkbabyapp/base.html' %}
+
+{% block content %}
+
+{% if profile_id %}
+    <p>You are looking at {{ profile_id }}!</p>
+{% else %}
+    <p>Nope right on out of here!</p>
+{% endif %}
+
+{% endblock %}
