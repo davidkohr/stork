@@ -2,6 +2,8 @@ FROM python:2.7
 ENV PYTHONUNBUFFERED 1
 ENTRYPOINT ["entrypoint.sh"]
 
+EXPOSE 8080
+
 # App setup
 COPY ./ /code
 WORKDIR /code
