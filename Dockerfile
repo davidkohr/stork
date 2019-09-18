@@ -9,6 +9,7 @@ COPY ./requirements.txt /code/
 WORKDIR /code
 # Requirements installation
 RUN pip install -r /code/requirements.txt
+RUN pip install psycopg2-binary
 
 # App setup
 COPY ./ /code

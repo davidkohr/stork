@@ -6,6 +6,7 @@ from django.template import loader
 from storkbabyapp.models import user, userRelation, userPreferenceMapping, userChildMapping, review, userExperienceMapping
 from django.shortcuts import redirect
 from django.db.models import Avg
+from urlparse import urlparse
 
 # Create your views here.
 from django.http import HttpResponse
@@ -18,7 +19,7 @@ def index(request):
     return render(request,'storkbabyapp/home.html')
 
 # This is a user's profile page!
-def results(request, profile_id):
+def profile(request, profile_id):
     # Try to get the user info. Redirect to the landing page if the user doesn't exist.
     person = ""
     try:
@@ -76,6 +77,9 @@ def results(request, profile_id):
     return render(request, 'storkbabyapp/profile.html', context)
 
 # This is returning a search result!
-def search(request, profile_id):
+def results(request, searched):
+    context = {
+        
+    }
 
     return render(request, 'storkbabyapp/search.html', context)
