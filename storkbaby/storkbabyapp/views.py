@@ -3,7 +3,9 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.template import loader
-from storkbabyapp.models import users
+from storkbabyapp.models import users, userRelations, userPreferenceMapping, userChildMapping, reviews, userExperienceMapping
+from django.shortcuts import redirect
+from django.db.models import Avg
 
 # Create your views here.
 from django.http import HttpResponse
@@ -17,41 +19,60 @@ def index(request):
 
 # This is a user's profile page!
 def results(request, profile_id):
-    # This is where we would do some DB queries to get profile info
-    users.objects.all()
-    # Declaring some very basic variables to test with. 
-    parent = True
-    firstname = "Jane"
-    lastname = "Doe"
-    rating = 4
-    email = "jane.doe@indexexchange.com"
-    phone = "(416) 555-5555"
-    # This will be populated for everyone
-    connections = [["Friend", "Best", 1], ["Sister", "Oldest", 2], ["Co", "Worker", 4]]
+    # Try to get the user info. Redirect to the landing page if the user doesn't exist.
+    person = ""
+    try:
+        person = users.objects.get(userID=profile_id)
+    except:
+        return redirect("index")
+    # populate data to pass to page
+    parent = person.userType
+    name = person.name
+    address = person.address
+    email = person.emailAddress
+    # Rating gets its own API call. Currently we take the average of all ratings.
+    rating = reviews.objects.filter(userID__userID__exact=profile_id).aggregate(Avg('rating'))['rating__avg']
+    # This will be populated for everyone. NEXT STEP: Should also filter on people the logged in user knows. 
+    x = userRelations.objects.filter(userID__userID__exact=profile_id)
+    connections = []
+    for record in x:
+        connections.append([record.relatingUser.name, record.relatingUser.userID])
     # This will be populated but mean something different for sitters/parents
-    preferences = ["vegetarian","ADHD support"]
+    y = userPreferenceMapping.objects.filter(userID__userID__exact=profile_id)
+    preferences = []
+    for record in y:
+        preferences.append(record.preferenceID.name)
     # Sitter only
-    education = ""
     experience = ""
-    # Parent only
-    kids = [["Bobby", "Doe", 11],["Alice", "Doe", 8]]
+    education = ""
+    try:
+        exp = userExperienceMapping.objects.get(userID=profile_id)
+        experience = exp.education
+        education = exp.experience
+    except:
+        experience = ""
+        education = ""
+    # Thw below will only populate data for parents. 
+    z = userChildMapping.objects.filter(userID__userID__exact=profile_id)
+    kids = []
+    for record in z:
+        kids.append([record.name, record.age])
 
     # Set up context (determine how to populate as part of template)
     context = {
         'profile_id': profile_id,
         'rating': rating,
         'parent': parent,
-        'firstname' : firstname,
-        'lastname' : lastname,
+        'name' : name,
         'email': email,
-        'phone': phone,
+        'address': address,
         'connections': connections,
         'preferences': preferences,
         'education': education,
         'experience': experience,
         'kids': kids,
     }
-
+    #Return the context rendered with all the data. 
     return render(request, 'storkbabyapp/profile.html', context)
 
 # This is returning a search result!
