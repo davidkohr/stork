@@ -161,4 +161,4 @@ def rate(request, my_id, user_id, rating):
  
     messages.info(request, 'Thank you for your feedback!') 
 
-    return redirect("profile", user_id, my_id)
+    return redirect("profile", my_id, user_id)

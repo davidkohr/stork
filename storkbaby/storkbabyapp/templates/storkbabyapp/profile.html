@@ -23,7 +23,7 @@
                             <a href="/storkbaby/{{my_id}}/rate/{{profile_id}}/{{i}}"><span>☆</span></a>
                         {% endif %}
                         {% endfor %}
-                        <br>
+                        <br />
                         {% if closeness == 0 %}
                         <button type="button" class="btn btn-outline-secondary">This is you!</button>
                         {% elif closeness == 1%}
@@ -32,13 +32,14 @@
                         <button type="button" class="btn btn-outline-warning">Mutual Connections</button>
                         {% elif closeness == 3%}
                         <button type="button" class="btn btn-outline-danger">No Mutual Connections</button>
-                        <br />
                         {% endif %}
+                        <br /><p>
                         {% if messages %}
                             {% for message in messages %}
                                <span>{{ message }}</span>
                             {% endfor %}
                         {% endif %}
+                        </p>
                     </div>
                     <div class="col-md-6">
                         <br> 
