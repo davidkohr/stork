@@ -30,8 +30,8 @@ python /code/storkbaby/manage.py migrate
 
 # Set create admin user
 echo "Creating super(admin) user"
-#python /code/storkbaby/manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@indexexchange.com', 'viper67')"
-python /code/storkbaby/manage.py shell -c "from django.contrib.auth.models import User; User.objects.filter(is_superuser=True); usr = User.objects.get(username='admin'); usr.set_password('viper123'); usr.save();"
+python /code/storkbaby/manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@indexexchange.com', 'viper123')"
+#python /code/storkbaby/manage.py shell -c "from django.contrib.auth.models import User; User.objects.filter(is_superuser=True); usr = User.objects.get(username='admin'); usr.set_password('viper123'); usr.save();"
 
 # Start server
 echo "Starting server"
