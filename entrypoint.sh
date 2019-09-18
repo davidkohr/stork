@@ -25,7 +25,7 @@ fi
 
 # Apply database migrations
 echo "Apply database migrations"
-python /code/storkbaby/manage.py makemigrations storkbaby
+python /code/storkbaby/manage.py makemigrations storkbabyapp
 python /code/storkbaby/manage.py migrate
 
 # Start server

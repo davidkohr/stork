@@ -14,7 +14,7 @@
                     <br><br>
                     </div>
                     <div class="col-md-3">
-                        <h5>{{firstname}} {{lastname}}
+                        <h5>{{name}}
                         </h5>
                         {% for i in '01234'|make_list %}
                         {% if rating >= forloop.counter %}
@@ -37,8 +37,8 @@
             <div class="col-md-4">  
                 <h6>Contact:</h6>
                 <ul>
+                    <li>{{address}}</li>
                     <li>{{email}}</li>
-                    <li>{{phone}}</li>
                 </ul>    
             </div>
             <!-- kid/qualification information -->
@@ -47,7 +47,7 @@
                     <h6>Kids:</h6>
                     <ul>
                         {% for kid in kids %}
-                        <li>{{kid.0}} {{kid.1}} (age: {{kid.2}}) </li>   
+                        <li>{{kid.0}} (age: {{kid.1}}) </li>   
                         {% endfor %}
                     </ul>
                     {% else %}
@@ -77,7 +77,7 @@
         <div class="row">
             <div class="col-sm">
                 <br>
-                <h6>People you both know:</h6>
+                <h6>People {{name}} knows:</h6>
             </div>
         </div>
         <div class="row ">
@@ -88,7 +88,7 @@
                         <img style="vertical-align:bottom" width="50" height="50" src="{% static 'profileM.png' %}">
                     </div>
                     <div class="col-md-6">
-                            <a href="../../{{item.2}}/profile">{{item.0}} {{item.1}}</a>
+                            <a href="../../{{item.1}}/profile">{{item.0}}</a>
                     </div>
                 </div>
             </div>

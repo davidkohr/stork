@@ -1,3 +1,3 @@
 # stork
 
-It's going to be great
+It's going to be greater
