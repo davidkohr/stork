@@ -106,11 +106,11 @@ def results(request, my_id, searched):
     terms = re.split('\+|%20',searched)  
     matched = []
     for term in terms:
-        ut = user.objects.filter(name__contains=term)
+        ut = user.objects.filter(name__icontains=term)
         for u in ut: 
             if u not in matched:
                 matched.append(u)
-        pt = userPreferenceMapping.objects.select_related('userID').filter(preferenceID__name__contains=term)
+        pt = userPreferenceMapping.objects.select_related('userID').filter(preferenceID__name__icontains=term)
         for p in pt:
             if p.userID not in matched:
                 matched.append(p.userID)
