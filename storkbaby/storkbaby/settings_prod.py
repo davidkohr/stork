@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'stork',
         'USER': 'postgre',
         'PASSWORD': 'IN97sGiC7wg2Nvx5',
-        'HOST': 'stork-253213:us-east1:stork-postgresql',
+        'HOST': '35.237.224.96',
         'PORT': '5432',
     }
 }
