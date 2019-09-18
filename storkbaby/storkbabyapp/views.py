@@ -30,7 +30,7 @@ def profile(request, profile_id, my_id):
     try:
         person = user.objects.get(userID=profile_id)
     except:
-        return redirect("index")
+        return redirect('index', my_id)
     # populate data to pass to page
     parent = person.userType
     name = person.name
@@ -63,6 +63,18 @@ def profile(request, profile_id, my_id):
     kids = []
     for record in z:
         kids.append([record.name, record.age])
+    # How close is this user to the logged in user
+    # 0 = this is me! 1 = connected. 2 = shared connection. 3 = stranger danger. 
+    closeness = 3
+    if my_id == profile_id:
+        closeness = 0
+    elif (userRelation.objects.filter(userID__userID__exact=my_id).filter(relatingUser__userID__exact=profile_id)):
+        closeness = 1
+    else:
+        myconn = userRelation.objects.filter(userID__userID__exact=my_id)
+        for c in myconn:
+            if userRelation.objects.filter(userID__userID__exact=c.relatingUser.userID).filter(relatingUser__userID__exact=profile_id):
+                closeness = 2
 
     # Set up context (determine how to populate as part of template)
     context = {
@@ -78,6 +90,7 @@ def profile(request, profile_id, my_id):
         'experience': experience,
         'kids': kids,
         'my_id': my_id,
+        'closeness': closeness,
     }
     #Return the context rendered with all the data. 
     return render(request, 'storkbabyapp/profile.html', context)
