@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 from django.db.models import Avg
 from urlparse import urlparse
 
+
 # Create your views here.
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -83,3 +84,16 @@ def results(request, searched):
     }
 
     return render(request, 'storkbabyapp/search.html', context)
+
+
+#This is the search function!
+def search(request):
+
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        context = {
+            'search': request.read()
+        }
+        return render(request, 'storkbabyapp/search.html', context)
+
+    return HttpResponseRedirect('results')
