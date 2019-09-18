@@ -2,6 +2,7 @@
 {% load static %}
 <html lang="en">
   <head>
+    {% block header %}
     <link rel='icon' href="{% static 'buttonlogo.png' %}" type='image/x-icon'/ >
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,14 +10,15 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'stork.css' %}" type="text/css"> 
+    <link rel="icon" href="/static/favicon.ico">
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'stork.css' %}">
-    <link rel="icon" href="/static/favicon.ico">
     <title>Stork</title>
+    {% endblock %}
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="margin-bottom:16px">
@@ -28,7 +30,10 @@
           <li class="nav-item active">
             <a class="nav-link" href="/storkbaby/{{my_id}}">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
+              <a class="nav-link" href="/storkbaby/{{my_id}}/schedule">Schedule <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
               <a class="nav-link" href="/storkbaby/{{my_id}}/{{my_id}}/profile">My Account<span class="sr-only">(current)</span></a>
             </li>
         </ul>
@@ -37,6 +42,10 @@
         {% csrf_token %}
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="seachbox" name="searchbox">
         <button class="btn btn-outline-success my-2 my-sm-0 bg-white" id="search_submit" type="submit">Search</button>
+      </form>
+      <form class="form-inline my-2 my-lg-0" type="get" action="/storkbaby/login" method="POST" style="margin: 0">
+        {% csrf_token %}
+        <button class="btn btn-outline-success my-2 my-sm-0 bg-white" id="login_submit" type="submit">Login</button>
       </form>
     </nav>
     {% block content %}

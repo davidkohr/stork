@@ -18,12 +18,20 @@
                         </h5>
                         {% for i in '01234'|make_list %}
                         {% if rating >= forloop.counter %}
-                            <a href="/storkbaby/{{my_id}}/rate/{{profile_id}}/{{i}}"><span>★</span></a>
+                            <a href="/storkbaby/{{my_id}}/rate/{{profile_id}}/{{i}}" style="text-decoration : none;color:#ffcc24;"><span>★</span></a>
                         {% else %}
-                            <a href="/storkbaby/{{my_id}}/rate/{{profile_id}}/{{i}}"><span>☆</span></a>
+                            <a href="/storkbaby/{{my_id}}/rate/{{profile_id}}/{{i}}" style="text-decoration : none;color:#ffcc24;"><span >☆</span></a>
                         {% endif %}
                         {% endfor %}
-                        <br />
+                        
+                        <p>
+                                {% if messages %}
+                                    {% for message in messages %}
+                                       <span>{{ message }}</span>
+                                    {% endfor %}
+                                {% endif %}
+                                </p>
+                        
                         {% if closeness == 0 %}
                         <button type="button" class="btn btn-outline-secondary">This is you!</button>
                         {% elif closeness == 1%}
@@ -33,13 +41,6 @@
                         {% elif closeness == 3%}
                         <button type="button" class="btn btn-outline-danger">No Mutual Connections</button>
                         {% endif %}
-                        <br /><p>
-                        {% if messages %}
-                            {% for message in messages %}
-                               <span>{{ message }}</span>
-                            {% endfor %}
-                        {% endif %}
-                        </p>
                     </div>
                     <div class="col-md-6">
                         <br> 

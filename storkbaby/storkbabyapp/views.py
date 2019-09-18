@@ -137,6 +137,13 @@ def search(request, my_id):
         url = '/storkbaby/' +my_id + '/results/' + urllib.quote(searchInput)
         print(url)
         return HttpResponseRedirect(url)
+    return HttpResponseRedirect('index', my_id)
+
+def schedule(request, my_id):
+    context = {
+        'my_id': my_id
+    }
+    return render(request, 'storkbabyapp/schedule.html', context)
      
     return HttpResponseRedirect('index', my_id)
 
@@ -162,3 +169,26 @@ def rate(request, my_id, user_id, rating):
     messages.info(request, 'Thank you for your feedback!') 
 
     return redirect("profile", my_id, user_id)
+
+# This is the login page!
+def login(request):
+    return render(request,'storkbabyapp/login.html')
+
+# This is the logging in function!
+def loginSubmit(request):
+    if request.method == 'POST':
+        emailInput = request.POST.get('emailbox')
+        print(emailInput)
+
+        # Search for the user by email
+        person = ""
+        try:
+            person = user.objects.get(emailAddress=emailInput)
+        except:
+            return redirect('home')
+
+        url = '/storkbaby/' + str(person.userID) + '/' + str(person.userID) + '/profile'
+        print(url)
+        return HttpResponseRedirect(url)
+    
+    return render(request,'storkbabyapp/login.html')
