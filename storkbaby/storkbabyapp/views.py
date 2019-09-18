@@ -9,7 +9,6 @@ from storkbabyapp.models import user, userRelation, userPreferenceMapping, userC
 from django.shortcuts import redirect
 from django.db.models import Avg
 from urlparse import urlparse 
-from .models import review
 import re
 import urllib
 
@@ -18,6 +17,10 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
 from .forms import NameForm
+
+# This is the landing page for the app!
+def home(request):
+    return render(request,'storkbabyapp/home.html')
 
 # This is the landing page for the app!
 def index(request, my_id):
@@ -33,7 +36,7 @@ def profile(request, profile_id, my_id):
     try:
         person = user.objects.get(userID=profile_id)
     except:
-        return redirect("index")
+        return redirect('index', my_id)
     # populate data to pass to page
     parent = person.userType
     name = person.name
@@ -66,6 +69,18 @@ def profile(request, profile_id, my_id):
     kids = []
     for record in z:
         kids.append([record.name, record.age])
+    # How close is this user to the logged in user
+    # 0 = this is me! 1 = connected. 2 = shared connection. 3 = stranger danger. 
+    closeness = 3
+    if my_id == profile_id:
+        closeness = 0
+    elif (userRelation.objects.filter(userID__userID__exact=my_id).filter(relatingUser__userID__exact=profile_id)):
+        closeness = 1
+    else:
+        myconn = userRelation.objects.filter(userID__userID__exact=my_id)
+        for c in myconn:
+            if userRelation.objects.filter(userID__userID__exact=c.relatingUser.userID).filter(relatingUser__userID__exact=profile_id):
+                closeness = 2
 
     # Set up context (determine how to populate as part of template)
     context = {
@@ -81,6 +96,7 @@ def profile(request, profile_id, my_id):
         'experience': experience,
         'kids': kids,
         'my_id': my_id,
+        'closeness': closeness,
     }
     #Return the context rendered with all the data. 
     return render(request, 'storkbabyapp/profile.html', context)
@@ -145,4 +161,4 @@ def rate(request, my_id, user_id, rating):
  
     messages.info(request, 'Thank you for your feedback!') 
 
-    return redirect("profile", user_id, my_id)
+    return redirect("profile", my_id, user_id)
