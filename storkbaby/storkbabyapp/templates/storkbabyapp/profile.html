@@ -10,7 +10,7 @@
             <div class="col-md" style="margin-top:20px">
                 <div class="row">
                     <div class="col-md-2">
-                        <img style="vertical-align:bottom" width="150" height="150" src="{% static 'profileM.png' %}">
+                        <img style="vertical-align:bottom" width="175" height="150" src="{% static 'profile3.png' %}">
                     <br><br>
                     </div>
                     <div class="col-md-3">
@@ -18,11 +18,28 @@
                         </h5>
                         {% for i in '01234'|make_list %}
                         {% if rating >= forloop.counter %}
-                            <span>★</span>
+                            <a href="/storkbaby/{{my_id}}/rate/{{profile_id}}/{{i}}"><span>★</span></a>
                         {% else %}
-                            <span>☆</span>
+                            <a href="/storkbaby/{{my_id}}/rate/{{profile_id}}/{{i}}"><span>☆</span></a>
                         {% endif %}
                         {% endfor %}
+                        <br />
+                        {% if closeness == 0 %}
+                        <button type="button" class="btn btn-outline-secondary">This is you!</button>
+                        {% elif closeness == 1%}
+                        <button type="button" class="btn btn-outline-success">Connected</button>
+                        {% elif closeness == 2%}
+                        <button type="button" class="btn btn-outline-warning">Mutual Connections</button>
+                        {% elif closeness == 3%}
+                        <button type="button" class="btn btn-outline-danger">No Mutual Connections</button>
+                        {% endif %}
+                        <br /><p>
+                        {% if messages %}
+                            {% for message in messages %}
+                               <span>{{ message }}</span>
+                            {% endfor %}
+                        {% endif %}
+                        </p>
                     </div>
                     <div class="col-md-6">
                         <br> 
@@ -85,7 +102,7 @@
             <div class="col-md">
                 <div class="row">
                     <div class="col-md-3">
-                        <img style="vertical-align:bottom" width="50" height="50" src="{% static 'profileM.png' %}">
+                        <img style="vertical-align:bottom" width="60" height="50" src="{% static 'profile3.png' %}">
                     </div>
                     <div class="col-md-6">
                             <a href="../../{{item.1}}/profile">{{item.0}}</a>

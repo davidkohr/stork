@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib import messages
+
 from django.shortcuts import render
 from django.template import loader
 from storkbabyapp.models import user, userRelation, userPreferenceMapping, userChildMapping, review, userExperienceMapping
@@ -17,6 +19,10 @@ from django.http import HttpResponseRedirect
 from .forms import NameForm
 
 # This is the landing page for the app!
+def home(request):
+    return render(request,'storkbabyapp/home.html')
+
+# This is the landing page for the app!
 def index(request, my_id):
     context = {
         'my_id': my_id,
@@ -30,7 +36,7 @@ def profile(request, profile_id, my_id):
     try:
         person = user.objects.get(userID=profile_id)
     except:
-        return redirect("index")
+        return redirect('index', my_id)
     # populate data to pass to page
     parent = person.userType
     name = person.name
@@ -63,6 +69,18 @@ def profile(request, profile_id, my_id):
     kids = []
     for record in z:
         kids.append([record.name, record.age])
+    # How close is this user to the logged in user
+    # 0 = this is me! 1 = connected. 2 = shared connection. 3 = stranger danger. 
+    closeness = 3
+    if my_id == profile_id:
+        closeness = 0
+    elif (userRelation.objects.filter(userID__userID__exact=my_id).filter(relatingUser__userID__exact=profile_id)):
+        closeness = 1
+    else:
+        myconn = userRelation.objects.filter(userID__userID__exact=my_id)
+        for c in myconn:
+            if userRelation.objects.filter(userID__userID__exact=c.relatingUser.userID).filter(relatingUser__userID__exact=profile_id):
+                closeness = 2
 
     # Set up context (determine how to populate as part of template)
     context = {
@@ -78,6 +96,7 @@ def profile(request, profile_id, my_id):
         'experience': experience,
         'kids': kids,
         'my_id': my_id,
+        'closeness': closeness,
     }
     #Return the context rendered with all the data. 
     return render(request, 'storkbabyapp/profile.html', context)
@@ -125,3 +144,28 @@ def schedule(request, my_id):
         'my_id': my_id
     }
     return render(request, 'storkbabyapp/schedule.html', context)
+     
+    return HttpResponseRedirect('index', my_id)
+
+#This is the rate function!
+def rate(request, my_id, user_id, rating):
+    # Try to get the user info. Redirect to the landing page if the user doesn't exist.
+    person = ""
+    try:
+        person = user.objects.get(userID=user_id)
+    except:
+        return redirect("index")
+
+    reviewer = ""
+    try:
+        reviewer = user.objects.get(userID=my_id)
+    except:
+        return redirect("index")
+
+    # Query to save the rating
+    ratingSubmission = review(userID=person, reviewer=reviewer, rating=int(rating)+1)
+    ratingSubmission.save()
+ 
+    messages.info(request, 'Thank you for your feedback!') 
+
+    return redirect("profile", my_id, user_id)
