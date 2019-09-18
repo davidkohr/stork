@@ -32,7 +32,7 @@
       </div>
       <form class="form-inline my-2 my-lg-0" type="get" action="/storkbaby/search" method="POST" style="margin: 0">
         {% csrf_token %}
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="your_name" name="your_name" value="{{ current_name }}">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="seachbox" name="searchbox">
         <button class="btn btn-outline-success my-2 my-sm-0 bg-white" id="search_submit" type="submit">Search</button>
       </form>
     </nav>

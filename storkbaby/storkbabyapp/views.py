@@ -6,9 +6,9 @@ from django.template import loader
 from storkbabyapp.models import user, userRelation, userPreferenceMapping, userChildMapping, review, userExperienceMapping
 from django.shortcuts import redirect
 from django.db.models import Avg
-from urlparse import urlparse
+from urlparse import urlparse 
 import re
-
+import urllib
 
 # Create your views here.
 from django.http import HttpResponse
@@ -107,9 +107,8 @@ def search(request):
 
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        context = {
-            'search': request.read()
-        }
-        return render(request, 'storkbabyapp/search.html', context)
+        searchInput = request.POST.get('searchbox')
+        url = 'results/' + urllib.quote(searchInput)
+        return HttpResponseRedirect(url)
 
-    return HttpResponseRedirect('results')
+    return HttpResponseRedirect('index')
