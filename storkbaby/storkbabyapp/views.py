@@ -76,6 +76,9 @@ def results(request, profile_id):
     return render(request, 'storkbabyapp/profile.html', context)
 
 # This is returning a search result!
-def search(request, profile_id):
+def results(request, searched):
+    context = {
+        
+    }
 
     return render(request, 'storkbabyapp/search.html', context)
