@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.template import loader
-from storkbabyapp.models import users, userRelations, userPreferenceMapping, userChildMapping, reviews, userExperienceMapping
+from storkbabyapp.models import user, userRelation, userPreferenceMapping, userChildMapping, review, userExperienceMapping
 from django.shortcuts import redirect
 from django.db.models import Avg
 
@@ -22,7 +22,7 @@ def results(request, profile_id):
     # Try to get the user info. Redirect to the landing page if the user doesn't exist.
     person = ""
     try:
-        person = users.objects.get(userID=profile_id)
+        person = user.objects.get(userID=profile_id)
     except:
         return redirect("index")
     # populate data to pass to page
@@ -31,9 +31,9 @@ def results(request, profile_id):
     address = person.address
     email = person.emailAddress
     # Rating gets its own API call. Currently we take the average of all ratings.
-    rating = reviews.objects.filter(userID__userID__exact=profile_id).aggregate(Avg('rating'))['rating__avg']
+    rating = review.objects.filter(userID__userID__exact=profile_id).aggregate(Avg('rating'))['rating__avg']
     # This will be populated for everyone. NEXT STEP: Should also filter on people the logged in user knows. 
-    x = userRelations.objects.filter(userID__userID__exact=profile_id)
+    x = userRelation.objects.filter(userID__userID__exact=profile_id)
     connections = []
     for record in x:
         connections.append([record.relatingUser.name, record.relatingUser.userID])
