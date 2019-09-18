@@ -18,9 +18,9 @@
                         </h5>
                         {% for i in '01234'|make_list %}
                         {% if rating >= forloop.counter %}
-                            <span>★</span>
+                            <a href="/storkbaby/{{my_id}}/rate/{{profile_id}}/{{i}}"><span>★</span></a>
                         {% else %}
-                            <span>☆</span>
+                            <a href="/storkbaby/{{my_id}}/rate/{{profile_id}}/{{i}}"><span>☆</span></a>
                         {% endif %}
                         {% endfor %}
                         <br>
@@ -32,6 +32,12 @@
                         <button type="button" class="btn btn-outline-warning">Mutual Connections</button>
                         {% elif closeness == 3%}
                         <button type="button" class="btn btn-outline-danger">No Mutual Connections</button>
+                        <br />
+                        {% endif %}
+                        {% if messages %}
+                            {% for message in messages %}
+                               <span>{{ message }}</span>
+                            {% endfor %}
                         {% endif %}
                     </div>
                     <div class="col-md-6">

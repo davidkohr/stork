@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib import messages
+
 from django.shortcuts import render
 from django.template import loader
 from storkbabyapp.models import user, userRelation, userPreferenceMapping, userChildMapping, review, userExperienceMapping
 from django.shortcuts import redirect
 from django.db.models import Avg
 from urlparse import urlparse 
+from .models import review
 import re
 import urllib
 
@@ -131,4 +134,28 @@ def search(request, my_id):
         url = '/storkbaby/' +my_id + '/results/' + urllib.quote(searchInput)
         print(url)
         return HttpResponseRedirect(url)
+     
     return HttpResponseRedirect('index', my_id)
+
+#This is the rate function!
+def rate(request, my_id, user_id, rating):
+    # Try to get the user info. Redirect to the landing page if the user doesn't exist.
+    person = ""
+    try:
+        person = user.objects.get(userID=user_id)
+    except:
+        return redirect("index")
+
+    reviewer = ""
+    try:
+        reviewer = user.objects.get(userID=my_id)
+    except:
+        return redirect("index")
+
+    # Query to save the rating
+    ratingSubmission = review(userID=person, reviewer=reviewer, rating=int(rating)+1)
+    ratingSubmission.save()
+ 
+    messages.info(request, 'Thank you for your feedback!') 
+
+    return redirect("profile", user_id, my_id)
