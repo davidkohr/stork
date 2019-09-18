@@ -85,10 +85,12 @@ def results(request, searched):
     for term in terms:
         ut = user.objects.filter(name__contains=term)
         for u in ut: 
-            matched.append(u)
+            if u not in matched:
+                matched.append(u)
         pt = userPreferenceMapping.objects.select_related('userID').filter(preferenceID__name__contains=term)
         for p in pt:
-            matched.append(p.userID)
+            if p.userID not in matched:
+                matched.append(p.userID)
     us = []
     for usr in matched:
         quals = []
