@@ -9,7 +9,6 @@ from storkbabyapp.models import user, userRelation, userPreferenceMapping, userC
 from django.shortcuts import redirect
 from django.db.models import Avg
 from urlparse import urlparse 
-from .models import review
 import re
 import urllib
 
@@ -18,6 +17,10 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
 from .forms import NameForm
+
+# This is the landing page for the app!
+def home(request):
+    return render(request,'storkbabyapp/home.html')
 
 # This is the landing page for the app!
 def index(request, my_id):
@@ -134,6 +137,13 @@ def search(request, my_id):
         url = '/storkbaby/' +my_id + '/results/' + urllib.quote(searchInput)
         print(url)
         return HttpResponseRedirect(url)
+    return HttpResponseRedirect('index', my_id)
+
+def schedule(request, my_id):
+    context = {
+        'my_id': my_id
+    }
+    return render(request, 'storkbabyapp/schedule.html', context)
      
     return HttpResponseRedirect('index', my_id)
 
@@ -158,4 +168,4 @@ def rate(request, my_id, user_id, rating):
  
     messages.info(request, 'Thank you for your feedback!') 
 
-    return redirect("profile", user_id, my_id)
+    return redirect("profile", my_id, user_id)
