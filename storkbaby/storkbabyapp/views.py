@@ -121,5 +121,7 @@ def search(request, my_id):
     return HttpResponseRedirect('index', my_id)
 
 def schedule(request, my_id):
-
-    return HttpResponseRedirect('index', my_id)
+    context = {
+        'my_id': my_id
+    }
+    return render(request, 'storkbabyapp/schedule.html', context)
