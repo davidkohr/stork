@@ -116,9 +116,9 @@ def search(request):
         url = 'results/' + urllib.quote(searchInput)
         return HttpResponseRedirect(url)
 
-    return HttpResponseRedirect('index')
+    return HttpResponseRedirect('index', my_id)
 
-#This is the search function!
+#This is the rate function!
 def rate(request, user_id, rating):
     # Try to get the user info. Redirect to the landing page if the user doesn't exist.
     person = ""
