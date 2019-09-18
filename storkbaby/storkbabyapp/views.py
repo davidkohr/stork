@@ -125,7 +125,7 @@ def search(request, my_id):
     return HttpResponseRedirect('index', my_id)
 
 #This is the rate function!
-def rate(request, user_id, rating):
+def rate(request, my_id, user_id, rating):
     # Try to get the user info. Redirect to the landing page if the user doesn't exist.
     person = ""
     try:
@@ -133,10 +133,16 @@ def rate(request, user_id, rating):
     except:
         return redirect("index")
 
+    reviewer = ""
+    try:
+        reviewer = user.objects.get(userID=my_id)
+    except:
+        return redirect("index")
+
     # Query to save the rating
-    ratingSubmission = review(userID=person, rating=rating)
+    ratingSubmission = review(userID=person, reviewer=reviewer, rating=int(rating)+1)
     ratingSubmission.save()
  
     messages.info(request, 'Thank you for your feedback!') 
 
-    return redirect("profile", user_id)
+    return redirect("profile", user_id, my_id)
