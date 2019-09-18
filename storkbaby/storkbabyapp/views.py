@@ -7,6 +7,7 @@ from storkbabyapp.models import user, userRelation, userPreferenceMapping, userC
 from django.shortcuts import redirect
 from django.db.models import Avg
 from urlparse import urlparse
+import re
 
 
 # Create your views here.
@@ -79,10 +80,25 @@ def profile(request, profile_id):
 
 # This is returning a search result!
 def results(request, searched):
+    terms = re.split('\+|%20',searched)  
+    matched = []
+    for term in terms:
+        ut = user.objects.filter(name__contains=term)
+        for u in ut: 
+            matched.append(u)
+        pt = userPreferenceMapping.objects.select_related('userID').filter(preferenceID__name__contains=term)
+        for p in pt:
+            matched.append(p.userID)
+    us = []
+    for usr in matched:
+        quals = []
+        upm = userPreferenceMapping.objects.filter(userID__userID__exact=usr.userID)
+        for up in upm: 
+            quals.append(up.preferenceID.name)
+        us.append([usr.name, usr.userID, quals])
     context = {
-        
+        'users': us
     }
-
     return render(request, 'storkbabyapp/search.html', context)
 
 
