@@ -23,6 +23,15 @@ if [ -d "$SRC_DIR"  ]; then
     cd $SRC_DIR
 fi
 
+# Check for ENV
+if [ -z "$ENV" ]; then
+    echo "ENV not set - we're in production"
+    cp -f /code/storkbaby/storkbaby/settings_prod.py /code/storkbaby/storkbaby/settings.py
+else
+    echo "ENV = $ENV"
+    cp -f /code/storkbaby/storkbaby/settings_dev.py /code/storkbaby/storkbaby/settings.py
+fi
+
 # Apply database migrations
 echo "Apply database migrations"
 python /code/storkbaby/manage.py makemigrations storkbabyapp
@@ -30,8 +39,8 @@ python /code/storkbaby/manage.py migrate
 
 # Set create admin user
 echo "Creating super(admin) user"
-python /code/storkbaby/manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@indexexchange.com', 'viper123')"
-#python /code/storkbaby/manage.py shell -c "from django.contrib.auth.models import User; User.objects.filter(is_superuser=True); usr = User.objects.get(username='admin'); usr.set_password('viper123'); usr.save();"
+python /code/storkbaby/manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@indexexchange.com', 'viper123')" || \
+    python /code/storkbaby/manage.py shell -c "from django.contrib.auth.models import User; User.objects.filter(is_superuser=True); usr = User.objects.get(username='admin'); usr.set_password('viper123'); usr.save();"
 
 # Start server
 echo "Starting server"
