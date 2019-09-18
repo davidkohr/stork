@@ -79,9 +79,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'stork',
-        'USER': 'postgre',
+        'USER': 'postgres',
         'PASSWORD': 'IN97sGiC7wg2Nvx5',
-        'HOST': 'stork-253213:us-east1:stork-postgresql',
+        'HOST': '/cloudsql/stork-253213:us-east1:stork-postgresql',
         'PORT': '5432',
     }
 }
