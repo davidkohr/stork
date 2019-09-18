@@ -1,3 +1,4 @@
 *.pyc
 .DS_store
 *.sqlite3
+storkbaby/storkbaby/settings.py
