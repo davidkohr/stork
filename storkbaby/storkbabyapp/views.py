@@ -9,7 +9,6 @@ from storkbabyapp.models import user, userRelation, userPreferenceMapping, userC
 from django.shortcuts import redirect
 from django.db.models import Avg
 from urlparse import urlparse 
-from .models import review
 import re
 import urllib
 
@@ -18,6 +17,10 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
 from .forms import NameForm
+
+# This is the landing page for the app!
+def home(request):
+    return render(request,'storkbabyapp/home.html')
 
 # This is the landing page for the app!
 def index(request, my_id):
