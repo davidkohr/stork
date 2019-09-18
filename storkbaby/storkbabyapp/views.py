@@ -116,3 +116,7 @@ def search(request, my_id):
         print(url)
         return HttpResponseRedirect(url)
     return HttpResponseRedirect('index', my_id)
+
+def schedule(request, my_id):
+
+    return HttpResponseRedirect('index', my_id)
