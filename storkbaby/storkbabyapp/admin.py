@@ -6,8 +6,8 @@ from django.contrib import admin
 # Register your models here.
 from .models import users, preferences, userPreferenceMapping, reviews, userRelations, userChildMapping, userExperienceMapping
 
-admin.site.register(users)
-admin.site.register(preferences)
+admin.site.register(user)
+admin.site.register(preference)
 admin.site.register(userPreferenceMapping)
 admin.site.register(reviews)
 admin.site.register(userRelations)

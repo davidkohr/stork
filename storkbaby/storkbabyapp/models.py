@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 # Create your models here.
-class users(models.Model):
+class user(models.Model):
     userID = models.IntegerField(default=0)
     userType = models.IntegerField(default=0)
     emailAddress = models.CharField(max_length=50)
@@ -13,7 +13,7 @@ class users(models.Model):
     def __str__(self):
         return '%s: %s' % (self.userID, self.name)
 
-class preferences(models.Model):
+class preference(models.Model):
     preferenceID = models.IntegerField(default=0)
     name = models.CharField(max_length=255)
     def __str__(self):
