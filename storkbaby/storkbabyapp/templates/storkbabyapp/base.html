@@ -44,6 +44,10 @@
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="seachbox" name="searchbox">
         <button class="btn btn-outline-success my-2 my-sm-0 bg-white" id="search_submit" type="submit">Search</button>
       </form>
+      <form class="form-inline my-2 my-lg-0" type="get" action="/storkbaby/login" method="POST" style="margin: 0">
+        {% csrf_token %}
+        <button class="btn btn-outline-success my-2 my-sm-0 bg-white" id="login_submit" type="submit">Login</button>
+      </form>
     </nav>
     {% block content %}
     {% endblock %}
