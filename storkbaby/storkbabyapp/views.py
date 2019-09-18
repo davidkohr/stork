@@ -18,7 +18,10 @@ from .forms import NameForm
 
 # This is the landing page for the app!
 def index(request, my_id):
-    return render(request,'storkbabyapp/home.html')
+    context = {
+        'my_id': my_id,
+    }
+    return render(request,'storkbabyapp/home.html', context)
 
 # This is a user's profile page!
 def profile(request, profile_id, my_id):
