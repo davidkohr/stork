@@ -3,110 +3,98 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 {% block content %}
-<div class="container"> 
+<div class="container px-lg-5"> 
         <!-- profile information -->
-        <div class="row">
-            <!-- personal information -->
-            <div class="col-md" style="margin-top:20px">
-                <div class="row">
-                    <div class="col-md-2">
-                        <img style="vertical-align:bottom" width="175" height="150" src="{% static 'profile3.png' %}">
-                    <br><br>
-                    </div>
-                    <div class="col-md-3">
-                        <h5>{{name}}
-                        </h5>
-                        {% for i in '01234'|make_list %}
-                        {% if rating >= forloop.counter %}
-                            <a href="/storkbaby/{{my_id}}/rate/{{profile_id}}/{{i}}" style="text-decoration : none;color:#ffcc24;"><span>★</span></a>
-                        {% else %}
-                            <a href="/storkbaby/{{my_id}}/rate/{{profile_id}}/{{i}}" style="text-decoration : none;color:#ffcc24;"><span >☆</span></a>
-                        {% endif %}
-                        {% endfor %}
-                        
-                        <p>
-                                {% if messages %}
-                                    {% for message in messages %}
-                                       <span>{{ message }}</span>
-                                    {% endfor %}
-                                {% endif %}
-                                </p>
-                        
-                        {% if closeness == 0 %}
-                        <button type="button" class="btn btn-outline-secondary">This is you!</button>
-                        {% elif closeness == 1%}
-                        <button type="button" class="btn btn-outline-success">Connected</button>
-                        {% elif closeness == 2%}
-                        <button type="button" class="btn btn-outline-warning">Mutual Connections</button>
-                        {% elif closeness == 3%}
-                        <button type="button" class="btn btn-outline-danger">No Mutual Connections</button>
-                        {% endif %}
-                    </div>
-                    <div class="col-md-6">
-                        <br> 
-                    </div>
-                </div>
+        <div class="row" align="center">
+            <div class="col" align="center">  
+            <!-- personal information -->        
+            <img style="vertical-align:bottom" width="175" height="150" src="{% static 'profile3.png' %}">
+            <br>
+            <h5>{{name}}</h5>
+            {% if closeness == 0 %}
+            <button type="button" class="btn disabled btn-outline-secondary">This is you!</button>
+            {% elif closeness == 1%}
+            <button type="button" class="btn disabled btn-outline-success">Connected</button>
+            {% elif closeness == 2%}
+            <button type="button" class="btn disabled btn-outline-warning">Mutual Connections</button>
+            {% elif closeness == 3%}
+            <button type="button" class="btn disabled btn-outline-danger">No Mutual Connections</button>
+            {% endif %}
+            <br>
+            {% for i in '01234'|make_list %}
+            {% if rating >= forloop.counter %}
+                <a href="/storkbaby/{{my_id}}/rate/{{profile_id}}/{{i}}" style="text-decoration : none;color:#ffcc24;"><span>★</span></a>
+            {% else %}
+                <a href="/storkbaby/{{my_id}}/rate/{{profile_id}}/{{i}}" style="text-decoration : none;color:#ffcc24;"><span >☆</span></a>
+            {% endif %}
+            {% endfor %}       
+            <p>
+            {% if messages %}
+                {% for message in messages %}
+                    <span>{{ message }}</span>
+                {% endfor %}
+            {% endif %}
+            </p> 
             </div>
         </div>
         <br>
         <!-- other information -->
         <div class="row">
             <!-- contact information -->
-            <div class="col-md-4">  
+            <div class="col border bg-light rounded" align="center">  <br>
                 <h6>Contact:</h6>
-                <ul>
+                <ul style="text-align:left;">
                     <li>{{address}}</li>
                     <li>{{email}}</li>
-                </ul>    
+                </ul>    <br>
             </div>
             <!-- kid/qualification information -->
-            <div class="col-md-4">  
+            <div class="col border bg-light rounded" align="center">  <br>
                     {%if parent%}
                     <h6>Kids:</h6>
-                    <ul>
+                    <ul style="text-align:left;">
                         {% for kid in kids %}
                         <li>{{kid.0}} (age: {{kid.1}}) </li>   
                         {% endfor %}
                     </ul>
                     {% else %}
                     <h6>Qualifications:</h6>
-                    <ul>
+                    <ul style="text-align:left;">
                         <li>Education: {{education}}</li>
                         <li>Experience: {{experience}}</li>
                     </ul>
-                    {%endif%}
+                    {%endif%} <br>
             </div>
             <!-- preference information -->
-            <div class="col-md-4">  
+            <div class="col border bg-light rounded" align="center">  <br>
                     {%if parent%}
                     <h6>Preferences:</h6>
                     {% else %}
                     <h6>Supports:</h6>
                     {%endif%}
-                    <ul>
+                    <ul style="text-align:left;">
                         {% for item in preferences %}
                         <li>{{item}}</li>
                         {% endfor %}
-                    </ul>
+                    </ul> <br>
             </div>
         </div>
         <!-- this is where connections will go -->
         <br>
         <div class="row">
-            <div class="col-sm">
+            <div class="col">
                 <br>
                 <h6>People {{name}} knows:</h6>
             </div>
         </div>
         <div class="row ">
             {% for item in connections %}
-            <div class="col-md">
+            <div class="col "> 
                 <div class="row">
-                    <div class="col-md-3">
-                        <img style="vertical-align:bottom" width="60" height="50" src="{% static 'profile3.png' %}">
-                    </div>
-                    <div class="col-md-6">
-                            <a href="../../{{item.1}}/profile">{{item.0}}</a>
+                    <div class="col-xs border bg-light px-md-5 rounded"> <br>
+                        <img style="vertical-align:bottom" width="60" height="50" align="middle" src="{% static 'profile3.png' %}">
+                        <a href="../../{{item.1}}/profile">{{item.0}}</a>
+                        <br><br>
                     </div>
                 </div>
             </div>

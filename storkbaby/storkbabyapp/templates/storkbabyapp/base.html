@@ -29,13 +29,15 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <a class="nav-link" href="/storkbaby/{{my_id}}">Home <span class="sr-only">(current)</span></a>
-          </li>
+          </li> 
+          {% if my_id %}
           <li class="nav-item">
               <a class="nav-link" href="/storkbaby/{{my_id}}/schedule">Schedule <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="/storkbaby/{{my_id}}/{{my_id}}/profile">My Account<span class="sr-only">(current)</span></a>
-            </li>
+          </li>
+          {% endif %}
         </ul>
       </div>
       <form class="form-inline my-2 my-lg-0" type="get" action="/storkbaby/{{my_id}}/search" method="POST" style="margin: 0">
@@ -50,5 +52,10 @@
     </nav>
     {% block content %}
     {% endblock %}
+    <nav class="navbar fixed-bottom navbar-center navbar-light bg-faded" style="background-color: #f5f5f5;">
+        <ul class="nav navbar-nav">
+          <li> © Team Advil</li>
+        </ul>
+      </nav>
   </body>
 </html>
