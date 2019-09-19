@@ -59,8 +59,8 @@ def profile(request, profile_id, my_id):
     education = ""
     try:
         exp = userExperienceMapping.objects.get(userID=profile_id)
-        experience = exp.education
-        education = exp.experience
+        experience = exp.experience
+        education = exp.education
     except:
         experience = ""
         education = ""
