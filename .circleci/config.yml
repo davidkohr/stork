@@ -17,4 +17,4 @@ jobs:
             sudo pip install -r requirements.txt
       - run:
           command: |
-            flake8 storkbaby/storkbabyapp/*.py
+            flake8 --exit-zero storkbaby/storkbabyapp/*.py
