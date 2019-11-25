@@ -3,4 +3,4 @@ jira==1.0.10
 pytz==2013.7
 XlsxWriter==1.0.5
 ics==0.4
-MySQL-python=1.2.5
+MySQL-python==1.2.5
