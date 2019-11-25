@@ -17,4 +17,5 @@ jobs:
             sudo pip install pylint
       - run:
           command: |
-            pylint *.py
+            pwd
+            pylint storkbaby/storkbabyapp/*.py
