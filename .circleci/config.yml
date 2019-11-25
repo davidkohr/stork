@@ -13,10 +13,8 @@ jobs:
           command: |
             sudo pip install pipenv
             pipenv install
-            sudo pip install pylint
+            sudo pip install flake8
             sudo pip install -r requirements.txt
       - run:
           command: |
-            pwd
-
-            pylint storkbaby/storkbabyapp/*.py
+            flake8 storkbaby/storkbabyapp/*.py
