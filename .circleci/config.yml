@@ -14,13 +14,7 @@ jobs:
           command: |
             sudo pip install pipenv
             pipenv install
-            sudo pip install pylint
-      - save_cache:
-          key: deps10-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
-          paths:
-            - '.venv'
-            - '/usr/local/bin'
-            - '/usr/local/lib/python3.6/site-packages'
+            sudo pip install pylintx
       - run:
           command: |
             pylint *.py
