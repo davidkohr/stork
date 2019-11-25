@@ -14,7 +14,7 @@ jobs:
             sudo pip install pipenv
             pipenv install
             sudo pip install pylint
-            sudo pip install -r requirements.yaml
+            sudo pip install -r requirements.txt
       - run:
           command: |
             pwd
