@@ -12,13 +12,11 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
-from boto.s3.connection import S3Connection
-
 # Get DB connection config
-CLEARDB_DATABASE_URL = S3Connection(os.environ['CLEARDB_DATABASE_URL'])
-CLEARDB_DATABASE_USER = S3Connection(os.environ['CLEARDB_DATABASE_USER'])
-CLEARDB_DATABASE_PASSWORD = S3Connection(os.environ['CLEARDB_DATABASE_PASSWORD'])
-CLEARDB_DATABASE_NAME = S3Connection(os.environ['CLEARDB_DATABASE_NAME'])
+CLEARDB_DATABASE_URL = os.environ['CLEARDB_DATABASE_URL']
+CLEARDB_DATABASE_USER = os.environ['CLEARDB_DATABASE_USER']
+CLEARDB_DATABASE_PASSWORD = os.environ['CLEARDB_DATABASE_PASSWORD']
+CLEARDB_DATABASE_NAME = os.environ['CLEARDB_DATABASE_NAME']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
