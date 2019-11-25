@@ -12,9 +12,13 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from boto.s3.connection import S3Connection
 
+# Get DB connection config
+CLEARDB_DATABASE_URL = S3Connection(os.environ['CLEARDB_DATABASE_URL'])
+CLEARDB_DATABASE_USER = S3Connection(os.environ['CLEARDB_DATABASE_USER'])
+CLEARDB_DATABASE_PASSWORD = S3Connection(os.environ['CLEARDB_DATABASE_PASSWORD'])
+CLEARDB_DATABASE_NAME = S3Connection(os.environ['CLEARDB_DATABASE_NAME'])
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -77,8 +81,12 @@ WSGI_APPLICATION = 'storkbaby.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': CLEARDB_DATABASE_NAME,
+        'USER': CLEARDB_DATABASE_USER,
+        'PASSWORD': CLEARDB_DATABASE_PASSWORD,
+        'HOST': CLEARDB_DATABASE_URL,
+        'PORT': '3306',
     }
 }
 
