@@ -77,12 +77,8 @@ WSGI_APPLICATION = 'storkbaby.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'stork',
-        'USER': 'postgres',
-        'PASSWORD': 'IN97sGiC7wg2Nvx5',
-        'HOST': '/cloudsql/stork-253213:us-east1:stork-postgresql',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

@@ -26,7 +26,6 @@ fi
 # Check for ENV
 if [ -z "$ENV" ]; then
     echo "ENV not set - we're in production"
-    cp -f /code/storkbaby/storkbaby/settings_prod.py /code/storkbaby/storkbaby/settings.py
 else
     echo "ENV = $ENV"
     cp -f /code/storkbaby/storkbaby/settings_dev.py /code/storkbaby/storkbaby/settings.py
