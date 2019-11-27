@@ -2,22 +2,16 @@
 from __future__ import unicode_literals
 
 from django.contrib import messages
-
 from django.shortcuts import render
-from django.template import loader
 from storkbabyapp.models import user, userRelation, userPreferenceMapping, userChildMapping, review, \
     userExperienceMapping
 from django.shortcuts import redirect
 from django.db.models import Avg
-from urlparse import urlparse
 import re
 import urllib
 
 # Create your views here.
-from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-
-from .forms import NameForm
 
 
 # This is the landing page for the app!
@@ -39,7 +33,7 @@ def profile(request, profile_id, my_id):
     person = ""
     try:
         person = user.objects.get(userID=profile_id)
-    except:
+    except Exception:
         return redirect('index', my_id)
     # populate data to pass to page
     parent = person.userType
@@ -48,7 +42,7 @@ def profile(request, profile_id, my_id):
     email = person.emailAddress
     # Rating gets its own API call. Currently we take the average of all ratings.
     rating = review.objects.filter(userID__userID__exact=profile_id).aggregate(Avg('rating'))['rating__avg']
-    # This will be populated for everyone. NEXT STEP: Should also filter on people the logged in user knows. 
+    # This will be populated for everyone. NEXT STEP: Should also filter on people the logged in user knows.
     x = userRelation.objects.filter(userID__userID__exact=profile_id)
     connections = []
     for record in x:
@@ -65,16 +59,16 @@ def profile(request, profile_id, my_id):
         exp = userExperienceMapping.objects.get(userID=profile_id)
         experience = exp.experience
         education = exp.education
-    except:
+    except Exception:
         experience = ""
         education = ""
-    # Thw below will only populate data for parents. 
+    # Thw below will only populate data for parents.
     z = userChildMapping.objects.filter(userID__userID__exact=profile_id)
     kids = []
     for record in z:
         kids.append([record.name, record.age])
     # How close is this user to the logged in user
-    # 0 = this is me! 1 = connected. 2 = shared connection. 3 = stranger danger. 
+    # 0 = this is me! 1 = connected. 2 = shared connection. 3 = stranger danger.
     closeness = 3
     if my_id == profile_id:
         closeness = 0
@@ -161,13 +155,13 @@ def rate(request, my_id, user_id, rating):
     person = ""
     try:
         person = user.objects.get(userID=user_id)
-    except:
+    except Exception:
         return redirect("index")
 
     reviewer = ""
     try:
         reviewer = user.objects.get(userID=my_id)
-    except:
+    except Exception:
         return redirect("index")
 
     # Query to save the rating
@@ -194,7 +188,7 @@ def loginSubmit(request):
         person = ""
         try:
             person = user.objects.get(emailAddress=emailInput)
-        except:
+        except Exception:
             return redirect('home')
 
         url = '/storkbaby/' + str(person.userID) + '/' + str(person.userID) + '/profile'
