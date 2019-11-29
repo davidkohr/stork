@@ -1,7 +1,3 @@
 build:
   docker:
-    stork: Dockerfile
-release:
-  command:
-    -
-  image: stork
+    web: Dockerfile
