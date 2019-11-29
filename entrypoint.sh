@@ -44,4 +44,5 @@ python /code/storkbaby/manage.py shell -c "from django.contrib.auth.models impor
 
 # Start server
 echo "Starting server"
-python /code/storkbaby/manage.py runserver 0.0.0.0:8080
+echo "Heroku Assigned port is: $PORT"
+python /code/storkbaby/manage.py runserver 0.0.0.0:$PORT
