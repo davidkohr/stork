@@ -3,6 +3,4 @@
 
 [![Heroku](https://heroku-badge.herokuapp.com/?app=foobaar-stork)](https://dashboard.heroku.com/apps/foobaar-stork/)
 
-
-
-It's going to be so great
+Sample app
