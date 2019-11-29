@@ -24,7 +24,7 @@ def index(request, my_id):
     context = {
         'my_id': my_id,
     }
-    return render(request, 'storkbabyapp/home.html', context)
+    return render(request, 'storkbabyapp/home.html',context)
 
 
 # This is a user's profile page!
