@@ -5,6 +5,9 @@ jobs:
       - image: circleci/python:3.6.4
         environment:
           PIPENV_VENV_IN_PROJECT: true
+    branches:
+      ignore:
+        - master
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
