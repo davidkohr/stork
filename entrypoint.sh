@@ -44,5 +44,12 @@ python /code/storkbaby/manage.py shell -c "from django.contrib.auth.models impor
 
 # Start server
 echo "Starting server"
-echo "Heroku Assigned port is: $PORT"
+
+if [ -z "$PORT" ]
+then
+      echo "PORT is empty..defaulting to 8080"
+      PORT=8080
+else
+      echo "Heroku Assigned port is: $PORT"
+fi
 python /code/storkbaby/manage.py runserver 0.0.0.0:$PORT
