@@ -22,7 +22,7 @@ if [ -d "$SRC_DIR"  ]; then
     echo "$SRC_DIR"
     cd $SRC_DIR
 fi
-
+ENV=development
 # Check for ENV
 if [ -z "$ENV" ]; then
     echo "ENV not set - we're in production"
