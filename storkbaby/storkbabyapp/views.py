@@ -1,14 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
-from django.contrib import messages
 from django.shortcuts import render
-from django.shortcuts import redirect
-import re
-import urllib
-
-# Create your views here.
-from django.http import HttpResponseRedirect
 
 
 # This is the landing page for the app!
