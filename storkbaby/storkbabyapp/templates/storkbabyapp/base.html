@@ -1,5 +1,6 @@
 <!doctype html>
 {% load static %}
+
 <html lang="en">
   <head>
     {% block header %}
@@ -21,8 +22,8 @@
     {% endblock %}
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="margin-bottom:16px">
-      <a class="navbar-brand" href="/storkbaby/{{my_id}}">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="margin-bottom:16px">
+      <a class="navbar-brand" href="/storkbaby/">
           <img src="{% static 'index_logo.png' %}" width="50" height="50" alt="">
       </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -37,7 +38,7 @@
     {% endblock %}
     <nav class="navbar fixed-bottom navbar-center navbar-light bg-faded" style="background-color: #f5f5f5;">
         <ul class="nav navbar-nav">
-          <li> © IX All Hands: Innovation Break-Out Session</li>
+          <li> © IX All Hands: Innovation Break-Out Session </li>
         </ul>
       </nav>
   </body>

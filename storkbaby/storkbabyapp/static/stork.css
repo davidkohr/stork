@@ -2,3 +2,16 @@
     background-color: #AEBECC
 }
 /* #30bb73 #3065bb */
+
+.col-centered {
+    float: none;
+    margin-right: auto;
+    margin-left: auto;
+  }
+.img-circle {
+    border-radius: 50%;
+}
+
+[class*="col-"] {
+    margin-top: 15px;
+}

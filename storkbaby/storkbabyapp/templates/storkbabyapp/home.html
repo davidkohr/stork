@@ -1,11 +1,34 @@
 {% extends 'storkbabyapp/base.html' %}
+{% load static %}
 {% block content %}
 
-{% load static %}
+
 <p style="text-align:center;">
-    <img src="{% static "transparent_pup.webp" %}" alt="Good boy" class="center" display="block" />
+    <img src="{% static "transparent_pup.webp" %}" alt="Good boy" class="center" display="block" width="400"/>
 </p>
 <p style="text-align:center;">
     <i>"<strike>Diamonds</strike> dogs are a girl's best friend..."</i> - Marilyn Monroe
 </p>
+<!-- add some vertical whitespace. incredibly bad form. -->
+<br><br><br>
+
+<div class="container">
+    {% for name, pic, description, owner in ix_pups %} 
+    {% if forloop.counter|divisibleby:4 or forloop.counter == 1 %}
+    <div class="row">
+    {% endif %}
+        <div class="col-sm col-centered text-center" style="width: 20rem;">
+            <img src="{{pic}}" class="img-circle" alt="Good boy" style="width: 200px;"><br><br>
+            <b>Name:</b><br>{{name}}<br>
+            <b>Description:</b><br>{{description}}<br>
+            <b>Owner:</b><br>{{owner}}
+        </div>
+    {% if forloop.counter|divisibleby:3 or forloop.counter == ix_pups|length %}
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+<br><br><br>
+
 {% endblock %}
