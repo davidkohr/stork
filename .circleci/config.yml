@@ -2,10 +2,10 @@ version: 2
 jobs:
   lint_css:
     docker:
-      - image: circleci/node:stretch
+      - image: circleci/node:latest
     steps:
       - checkout
-      - run: npm install stylelint -g
+      - run: npm install stylelint
       - run: stylelint storkbaby/storkbabyapp/static/stork.css
   build:
     docker:
