@@ -1,4 +1,18 @@
 .navbar {
-    background-color: #30bb73
+    background-color: #aebecc
+}
+/* #30bb73 #3065bb */
+
+.col-centered {
+    float: none;
+    margin-right: auto;
+    margin-left: auto;
+  }
+.img-circle {
+    border-radius: 50%;
+}
+
+[class*="col-"] {
+    margin-top: 15px;
 }
 /* 30bb73 3065bb */
