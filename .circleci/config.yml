@@ -31,3 +31,17 @@ jobs:
       - run:
           command: |
             flake8 storkbaby/storkbabyapp/*.py
+workflows:
+  version: 2
+  workflow:
+    jobs:
+    - lint_css:
+        filters:
+          branches:
+            ignore:
+              - master
+    - build:
+        filters:
+          branches:
+            ignore:
+            - master
