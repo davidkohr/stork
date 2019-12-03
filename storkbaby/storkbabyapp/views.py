@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render
 from storkbabyapp.models import pup
 from django.template.response import TemplateResponse
-import re
 
 
 # This is the landing page for the app!
