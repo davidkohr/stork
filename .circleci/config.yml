@@ -8,8 +8,8 @@ jobs:
         - master
     steps:
       - checkout
-      - npm install stylelint -g
-      - stylelint storkbaby/storkbabyapp/static/stork.css
+      - run: npm install stylelint -g
+      - run: stylelint storkbaby/storkbabyapp/static/stork.css
   build:
     docker:
       - image: circleci/python:3.6.4
