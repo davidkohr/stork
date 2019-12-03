@@ -1,0 +1,30 @@
+{
+   "rules":{
+      "at-rule-blacklist":[
+         "debug"
+      ],
+      "color-hex-case":"lower",
+      "color-hex-length":"short",
+      "color-named":"never",
+      "color-no-invalid-hex":true,
+      "max-nesting-depth":[
+         3,
+         {
+            "ignoreAtRules":[
+               "each",
+               "media",
+               "supports",
+               "include"
+            ],
+            "severity":"warning"
+         }
+      ],
+      "selector-list-comma-newline-after":"always",
+      "selector-max-compound-selectors":[
+         3,
+         {
+            "severity":"warning"
+         }
+      ]
+   }
+}
