@@ -33,15 +33,7 @@ jobs:
             flake8 storkbaby/storkbabyapp/*.py
 workflows:
   version: 2
-  workflow:
+  lint-build:
     jobs:
-    - lint_css:
-        filters:
-          branches:
-            ignore:
-              - master
-    - build:
-        filters:
-          branches:
-            ignore:
-            - master
+    - lint_css
+    - build
