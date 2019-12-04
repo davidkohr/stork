@@ -2,6 +2,7 @@
 .DS_store
 *.sqlite3
 storkbaby/storkbaby/settings.py
-
+storkbaby/storkbabyapp/static/*.jpg
+storkbaby/storkbabyapp/static/*.png
 # IDE
 .idea/
