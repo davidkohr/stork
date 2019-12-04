@@ -5,6 +5,7 @@ from django.template.response import TemplateResponse
 
 from .forms import NewDogForm
 
+
 # This is the landing page for the app!
 def home(request):
     ix_pups = []
@@ -18,5 +19,5 @@ def home(request):
     query_set = pup.objects.all()
     for single_pup in query_set:
         ix_pups.append([single_pup.name, single_pup.picture.url[12:], single_pup.description, single_pup.owner])
-    form = NewDogForm(initial={'name': '', 'description':'', 'owner':'' })
+    form = NewDogForm(initial={'name': '', 'description': '', 'owner': ''})
     return TemplateResponse(request, 'storkbabyapp/home.html', {'ix_pups': ix_pups, 'form': form})

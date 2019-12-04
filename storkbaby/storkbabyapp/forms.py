@@ -1,5 +1,5 @@
 from django import forms
-from .models import pup
+
 
 class NewDogForm(forms.Form):
 
