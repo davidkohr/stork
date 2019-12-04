@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storkbabyapp',
     'storkbaby',
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [
