@@ -13,21 +13,27 @@
 <br><br><br>
 
 <div class="container">
-    {% for name, pic, description, owner in ix_pups %} 
-    {% if forloop.counter|divisibleby:4 or forloop.counter == 1 %}
-    <div class="row">
-    {% endif %}
-        <div class="col-sm col-centered text-center" style="width: 20rem;">
-            <img src="{{pic}}" class="img-circle" alt="Good boy" style="width: 200px;"><br><br>
-            <b>Name:</b><br>{{name}}<br>
-            <b>Description:</b><br>{{description}}<br>
-            <b>Owner:</b><br>{{owner}}
+        {% for name, pic, description, owner in ix_pups %} 
+        {% if forloop.counter0|divisibleby:3 or forloop.counter == 1 %}
+        <div class="row">
+        {% endif %}
+            <div class="col-sm col-centered text-center" style="width: 20rem;">
+                <img src="{{pic}}" class="img-circle" alt="Good boy" style="width: 200px; height: 200px;"><br><br>
+                <b>Name:</b><br>{{name}}<br>
+                <b>Description:</b><br>{{description}}<br>
+                <b>Owner:</b><br>{{owner}}
+            </div>
+        {% if forloop.counter|divisibleby:3 or forloop.counter == ix_pups|length %}
+        {% if forloop.counter == ix_pups|length and not forloop.counter|divisibleby:3 %}
+            <div class="col-sm col-centered text-center" style="width: 20rem;"></div>
+            {% if forloop.counter0|divisibleby:3 %}
+            <div class="col-sm col-centered text-center" style="width: 20rem;"></div>
+            {% endif %}
+        {% endif %}
         </div>
-    {% if forloop.counter|divisibleby:3 or forloop.counter == ix_pups|length %}
+        {% endif %}
+        {% endfor %}
     </div>
-    {% endif %}
-    {% endfor %}
-</div>
 
 <br><br><br>
 
