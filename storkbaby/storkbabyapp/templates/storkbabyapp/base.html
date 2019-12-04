@@ -33,7 +33,25 @@
           </li> 
         </ul>
       </div>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">New Cat</button>
     </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header justify-content-between">
+              <h4 class="modal-title">New Cat</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p>That probably belongs on a different webpage...</p>
+            </div>
+          </div>
+        </div>
+      </div>
     {% block content %}
     {% endblock %}
     <nav class="navbar fixed-bottom navbar-center navbar-dark bg-faded" style="background-color: #f5f5f5;">
