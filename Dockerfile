@@ -10,7 +10,7 @@ WORKDIR /code
 # Requirements installation
 RUN pip install -r /code/requirements.txt
 RUN pip install psycopg2-binary
-
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 # App setup
 COPY ./ /code
 COPY entrypoint.sh /bin/entrypoint.sh
