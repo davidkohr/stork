@@ -20,12 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@%s+&3y0_!umn%s3@4)+b#m2k6igkgme*gtv70*u6ujeoc3^*!'
-
+SECRET_KEY = os.environ['secret_key']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.33.10','stork-6xt3jixdeq-ue.a.run.app', '127.0.0.1', 'foobaar-stork.herokuapp.com']
+ALLOWED_HOSTS = ['192.168.33.10', '127.0.0.1', 'foobaar-stork.herokuapp.com']
 
 
 # Application definition
@@ -39,7 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storkbabyapp',
     'storkbaby',
+    'storages',
+    'crispy_forms',
 ]
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_S3_SECURE_URLS = False       # use http instead of https
+AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
+AWS_S3_ACCESS_KEY_ID = os.environ['AWS_S3_ACCESS_KEY_ID']     # enter your access key id
+AWS_S3_SECRET_ACCESS_KEY = os.environ['AWS_S3_SECRET_ACCESS_KEY'] # enter your secret access key
+AWS_STORAGE_BUCKET_NAME = 'ixallhands'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,14 +82,15 @@ WSGI_APPLICATION = 'storkbaby.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+DB_USERNAME=os.environ['db_user']
+DB_PASSWORD=os.environ['db_password']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'stork',
-        'USER': 'postgres',
-        'PASSWORD': 'IN97sGiC7wg2Nvx5',
-        'HOST': '/cloudsql/stork-253213:us-east1:stork-postgresql',
+        'NAME': "d8qvl1i6pqms0b",
+        'USER': DB_USERNAME,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': 'ec2-174-129-226-234.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }

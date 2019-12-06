@@ -1,9 +1,10 @@
 <!doctype html>
 {% load static %}
+
 <html lang="en">
   <head>
     {% block header %}
-    <link rel='icon' href="{% static 'buttonlogo.png' %}" type='image/x-icon'/ >
+    <link rel='icon' href="{% static 'favicon.ico' %}" type='image/x-icon'/ >
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,44 +18,27 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <title>Stork</title>
+    <title>Dogs of IX</title>
     {% endblock %}
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="margin-bottom:16px">
-      <a class="navbar-brand" href="/storkbaby/{{my_id}}">
-          <img src="{% static 'buttonlogo.png' %}" alt="My image" width="50" height="50" alt="">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="margin-bottom:16px">
+      <a class="navbar-brand" href="/dogs/">
+          <img src="{% static 'index_logo.png' %}" width="50" height="50" alt="">
       </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/storkbaby/{{my_id}}">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/dogs/">Dogs of IX 🐶</a>
           </li> 
-          {% if my_id %}
-          <li class="nav-item">
-              <a class="nav-link" href="/storkbaby/{{my_id}}/schedule">Schedule <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="/storkbaby/{{my_id}}/{{my_id}}/profile">My Account<span class="sr-only">(current)</span></a>
-          </li>
-          {% endif %}
         </ul>
       </div>
-      <form class="form-inline my-2 my-lg-0" type="get" action="/storkbaby/{{my_id}}/search" method="POST" style="margin: 0">
-        {% csrf_token %}
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="seachbox" name="searchbox">
-        <button class="btn btn-outline-success my-2 my-sm-0 bg-white" id="search_submit" type="submit">Search</button>
-      </form>
-      <form class="form-inline my-2 my-lg-0" type="get" action="/storkbaby/login" method="POST" style="margin: 0">
-        {% csrf_token %}
-        <button class="btn btn-outline-success my-2 my-sm-0 bg-white" id="login_submit" type="submit">Login</button>
-      </form>
     </nav>
     {% block content %}
     {% endblock %}
-    <nav class="navbar fixed-bottom navbar-center navbar-light bg-faded" style="background-color: #f5f5f5;">
+    <nav class="navbar fixed-bottom navbar-center navbar-dark bg-faded" style="background-color: #f5f5f5;">
         <ul class="nav navbar-nav">
-          <li> © Team Advil</li>
+          <li> © IX All Hands: Innovation Break-Out Session </li>
         </ul>
       </nav>
   </body>
