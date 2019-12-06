@@ -20,4 +20,4 @@ def home(request):
     for single_pup in query_set:
         ix_pups.append([single_pup.name, single_pup.picture.url, single_pup.description, single_pup.owner])
     form = NewDogForm(initial={'name': '', 'description': '', 'owner': ''})
-    return TemplateResponse(request, 'storkbabyapp/home.html', {'ix_pups': ix_pups})
+    return TemplateResponse(request, 'storkbabyapp/home.html', {'ix_pups': ix_pups, 'form': form})
