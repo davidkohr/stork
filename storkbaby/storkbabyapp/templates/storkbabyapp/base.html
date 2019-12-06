@@ -3,6 +3,11 @@
 
 <html lang="en">
   <head>
+    <style>
+      body {
+        background-color: lightblue;
+      }
+</style>
     {% block header %}
     <link rel='icon' href="{% static 'favicon.ico' %}" type='image/x-icon'/ >
     <!-- Required meta tags -->
@@ -21,7 +26,7 @@
     <title>Dogs of IX</title>
     {% endblock %}
   </head>
-  <body>
+  <body style="background-color: #1abced">
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="margin-bottom:16px">
       <a class="navbar-brand" href="/dogs/">
           <img src="{% static 'index_logo.png' %}" width="50" height="50" alt="">
