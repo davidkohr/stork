@@ -3,3 +3,6 @@ pytz==2013.7
 XlsxWriter==1.0.5
 ics==0.4
 Pillow==6.2.1
+django-storages==1.8
+boto==2.49.0
+django-crispy-forms==1.8.1
