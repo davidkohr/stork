@@ -7,7 +7,7 @@ from django.db import models
 class pup(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    picture = models.ImageField(upload_to='storkbabyapp/static')
+    picture = models.ImageField(upload_to='profilepics')
     description = models.CharField(max_length=250)
     owner = models.CharField(max_length=50)
 
