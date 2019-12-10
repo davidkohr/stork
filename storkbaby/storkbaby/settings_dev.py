@@ -25,10 +25,11 @@ SECRET_KEY = '@%s+&3y0_!umn%s3@4)+b#m2k6igkgme*gtv70*u6ujeoc3^*!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.33.10','stork-6xt3jixdeq-ue.a.run.app', '127.0.0.1', 'foobaar-stork.herokuapp.com']
+ALLOWED_HOSTS = ['192.168.33.10', '127.0.0.1', 'foobaar-stork.herokuapp.com']
 
 
 # Application definition
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,7 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storkbabyapp',
     'storkbaby',
+    'storages',
+    'crispy_forms',
 ]
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_S3_SECURE_URLS = False       # use http instead of https
+AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
+AWS_S3_ACCESS_KEY_ID = os.environ['AWS_S3_ACCESS_KEY_ID']     # enter your access key id
+AWS_S3_SECRET_ACCESS_KEY = os.environ['AWS_S3_SECRET_ACCESS_KEY'] # enter your secret access key
+AWS_STORAGE_BUCKET_NAME = 'ixallhands'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -19,7 +19,6 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
-    url(r'^storkbaby/', include('storkbabyapp.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^.*$', include('storkbabyapp.urls')),
 ]

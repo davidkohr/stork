@@ -3,8 +3,6 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.template import loader
-from storkbabyapp.models import user, userRelation, userPreferenceMapping, userChildMapping, review, \
-    userExperienceMapping
 from django.shortcuts import redirect
 
 import re

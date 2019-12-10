@@ -1,4 +1,27 @@
 .navbar {
-    background-color: #30bb73
+    background-color: #AEBECC
 }
 /* #30bb73 #3065bb */
+
+.col-centered {
+    float: none;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+.img-circle {
+    border-radius: 50%;
+ }
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+    background-color: #1d428a !important;
+    border-color: #1d428a;
+}
+
+[class*="col-"] {
+    margin-top: 15px;
+}
+/* 30bb73 3065bb */
